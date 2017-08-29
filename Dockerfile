@@ -8,4 +8,6 @@ RUN apt-get update -y && \
     curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar xzv -C /usr/local/bin cf && \
     cf install-plugin autopilot -f -r CF-Community
 
+COPY cf_deploy.sh /usr/local/bin
+
 CMD cf -v
