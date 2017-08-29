@@ -4,14 +4,8 @@ MAINTAINER kramos <markosrendell@gmail.com>
 
 # Install cloud foundry cli
 RUN apt-get update -y && \
-    apt-get install -y software-properties-common && \
-    apt-get update -y && \
-    apt-get install -y wget && \
-    wget -O cf.tgz 'https://cli.run.pivotal.io/stable?release=linux64-binary&source=github' && \
-    tar xvzf cf.tgz && \
-    cp ./cf /usr/local/bin
-
-# Install JDK
-RUN apt-get install -y default-jdk
+    apt-get install -y curl && \
+    curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar xzv -C /usr/local/bin cf && \
+    cf install-plugin autopilot -f -r CF-Community
 
 CMD cf -v
