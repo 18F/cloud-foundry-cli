@@ -18,7 +18,7 @@ You must define a manifest file as per the autopilot plugin.
 You'll want to set the following environment variables as per your Cloud Foundry instance. If unset, `cf_deploy.sh` will assume you have already setup the API and authentication via configuration files.
 
 Env variable | Description | Example
---- | ---
+--- | --- | ---
 `CF_API` | The API endpoint for your Cloud Foundry instance.  | `https://api.fr.cloud.gov`
 `CF_DEPLOY_USER` | The username for your Cloud Foundry deploy account.  | `my-deploy-user`
 `CF_DEPLOY_PASSWORD` | The password for your Cloud Foundry deploy account.  | `super-secret-password`
