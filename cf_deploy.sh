@@ -35,12 +35,5 @@ fi
 # Target space
 cf target -o "$org" -s "$space"
 
-# If the app exists, use zero-downtime
-if cf app "$app"; then
-  command=zero-downtime-push
-else
-  command=push
-fi
-
 # Deploy web-app
-cf "$command" "$app" -f "$manifest"
+cf zero-downtime-push "$app" -f "$manifest"
