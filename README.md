@@ -12,6 +12,29 @@ deploys](https://github.com/contraband/autopilot) to Cloud Foundry.
 
 You must define a manifest file as per the autopilot plugin.
 
+### CircleCI
+
+This image can be used with [CircleCI](https://circleci.com/) to push to Cloud
+Foundry directly from your CI pipeline. Here's an sample configuration:
+
+```
+version: 2
+jobs:
+  build:
+    docker:
+      - image: adborden/cloud-foundry-cli
+        environment:
+          CF_API: https://api.fr.cloud.gov
+    steps:
+      - checkout
+      - run:
+          name: Your build step
+          command: ./build.sh
+      - deploy:
+          name: cf push
+          command: cf_deploy.sh app-name org-name space-name
+```
+
 
 ## Configuration
 
