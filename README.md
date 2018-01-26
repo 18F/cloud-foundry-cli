@@ -22,7 +22,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: adborden/cloud-foundry-cli
+      - image: 18fgsa/cloud-foundry-cli
         environment:
           CF_API: https://api.fr.cloud.gov
     steps:
@@ -55,5 +55,5 @@ To build the image for Docker Hub, first make sure you're logged in.
 
 Then build and push the image.
 
-    $ docker build -t adborden/cloud-foundry-cli:<version>
-    $ docker push adborden/cloud-foundry-cli
+    $ docker build -t 18fgsa/cloud-foundry-cli:<version>
+    $ docker push 18fgsa/cloud-foundry-cli
