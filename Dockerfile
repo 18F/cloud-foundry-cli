@@ -9,5 +9,6 @@ RUN apt-get update -y && \
     cf install-plugin autopilot -f -r CF-Community
 
 COPY cf_deploy.sh /usr/local/bin
+COPY cf_login_and_target.sh /usr/local/bin
 
 CMD cf -v
