@@ -8,7 +8,7 @@ app=${1}
 org=${2}
 space=${3}
 manifest=${4:-manifest.yml}
-push_comand="push"
+push_command="push"
 
 if [[ -z $org || -z $space || -z $app ]]; then
   echo "Usage: $0  <app> <org> <space> [manifest.yml]" >&2
