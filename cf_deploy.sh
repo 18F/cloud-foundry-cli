@@ -42,6 +42,8 @@ cf target -o "$org" -s "$space"
 # perform a normal push for a first time deployment.
 if cf app $app; then
   push_command="zero-downtime-push"
+else 
+  push_command="push"
 fi
 
 cf $push_command "$app" -f "$manifest"
