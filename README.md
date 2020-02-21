@@ -52,6 +52,19 @@ jobs:
       - deploy:
           name: cf push
           command: cf_deploy.sh app-name org-name space-name
+          
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
 ```
 
 
