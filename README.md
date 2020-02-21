@@ -22,14 +22,33 @@ version: 2
 jobs:
   build:
     docker:
+      # Image will depend on what works for your project. If this were a python
+      # app, use the python image.
+      - image: circleci/python:2.7
+    steps:
+      - checkout
+      - run:
+          name: Your build command
+          command: ./build.sh
+      - persist_to_workspace:
+          root: .
+          paths:
+            # Any assets or artifacts should be persisted to the workspace so they
+            # can be restored for the deploy. Here are some examples:
+            - build_dir
+            - static
+            - vendor
+  
+  deploy:
+    docker:
       - image: 18fgsa/cloud-foundry-cli
         environment:
           CF_API: https://api.fr.cloud.gov
     steps:
       - checkout
-      - run:
-          name: Your build step
-          command: ./build.sh
+      # Restore the workspace in order to push assets and artifacts
+      - attach_workspace:
+          at: .
       - deploy:
           name: cf push
           command: cf_deploy.sh app-name org-name space-name
