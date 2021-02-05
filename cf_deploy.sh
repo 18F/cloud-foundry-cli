@@ -20,21 +20,7 @@ if [[ ! -r "$manifest" ]]; then
   exit 1
 fi
 
-if [[ -n "$CF_API" ]]; then
-  cf api "$CF_API"
-fi
-
-(
-  set +x # Disable debugging
-
-  # Log in if necessary
-  if [[ -n $CF_DEPLOY_USER && -n $CF_DEPLOY_PASSWORD ]]; then
-    cf auth "$CF_DEPLOY_USER" "$CF_DEPLOY_PASSWORD"
-  fi
-)
-
-# Target space
-cf target -o "$org" -s "$space"
+cf_login_and_target.sh $org $space
 
 # Deploy web-app
 # If the app already exists, switch to using the
